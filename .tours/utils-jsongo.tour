@@ -1,0 +1,97 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "utils-json.go",
+  "steps": [
+    {
+      "file": "utils/json.go",
+      "description": "part of package utils",
+      "line": 1
+    },
+    {
+      "file": "utils/json.go",
+      "description": "defines a struct names `HTTPMessage` with two fields:\n1. `StatusCode`-> an int representing the HTTP response status code\n2. `Message`-> a string containing a message associated with the response\nthe struct fields are tagged with `json` annotations, which define how the fields should be represented in JSON format when marshaled",
+      "line": 8
+    },
+    {
+      "file": "utils/json.go",
+      "description": "defines a function that takes a HTTP request (`r *http.request`) and a variable `data` where the decoded JSON will be stored. \nIt returns an error if decoding fails.",
+      "line": 14
+    },
+    {
+      "file": "utils/json.go",
+      "description": "used the `json.NewDecoder` to create a new JSON decoder for the request body `r.Body` and attempts to decode the JSON data into the `data` variable",
+      "line": 15
+    },
+    {
+      "file": "utils/json.go",
+      "description": "ensures that the request body is closed after the functino completes, preventing resource leaks",
+      "line": 16
+    },
+    {
+      "file": "utils/json.go",
+      "description": "returns any error encountered during decoding. If successful, returns `nil`",
+      "line": 17
+    },
+    {
+      "file": "utils/json.go",
+      "description": "defines a function that takes an HTTP request `r *http.Request`, an HTTP reponse writer (`w http.ResponseWriter`) and a `response` variable that will be converted to JSON and sent back to the client",
+      "line": 20
+    },
+    {
+      "file": "utils/json.go",
+      "description": "Marshals the `response` variable into JSON format and stores the result in `resJson`\nIf marshaling fails, `err` will contain the error",
+      "line": 21
+    },
+    {
+      "file": "utils/json.go",
+      "description": "Checks if an error occurred during marshaling. If so, it calls `LogErrAndRespond`, a utility function to log the error and respond to the client with an error message and an internal server error status.\n\nFor more information, look at `utils/log.go`",
+      "line": 23
+    },
+    {
+      "file": "utils/json.go",
+      "description": "sets the `Content-Type` header fo the response to `application/json`, indicating that the response body contains JSON data",
+      "line": 28
+    },
+    {
+      "file": "utils/json.go",
+      "description": "sends HTTP status code 200 to the client",
+      "line": 29
+    },
+    {
+      "file": "utils/json.go",
+      "description": "write the marshaled JSON data `resJson` to the response body",
+      "line": 31
+    },
+    {
+      "file": "utils/json.go",
+      "description": "checks if an error occurred while writing the response. If so, logs the error with a message",
+      "line": 33
+    },
+    {
+      "file": "utils/json.go",
+      "description": "defines a function that takes an HTTP request, response writer, an HTTP status code, and a message string. \nThis function is used to repond with a structured message",
+      "line": 39
+    },
+    {
+      "file": "utils/json.go",
+      "description": "sets the HTTP status code for the response to the value provided in the `status` parameter",
+      "line": 40
+    },
+    {
+      "file": "utils/json.go",
+      "description": "creates a new `HTTPMessage` instance with the provided `status` and `message`.\nThis instance will be marshaled to JSON",
+      "line": 41
+    },
+    {
+      "file": "utils/json.go",
+      "description": "calls the function to convert the `HTTPMessage` instance to JSON and send it back in the HTTP response",
+      "line": 45
+    },
+    {
+      "file": "utils/json.go",
+      "description": "This utility code provides functions to decode JSON request bodies, generate JSON responses, and respond with structured HTTP messages. It defines an `HTTPMessage` struct for consistent response formatting and includes error handling to log issues and respond appropriately when errors occur during processing. These functions are essential for building RESTful APIs, allowing for standardized communication between the server and clients.",
+      "line": 47
+    }
+  ],
+  "ref": "code-tour"
+}

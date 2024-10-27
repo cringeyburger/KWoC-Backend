@@ -1,0 +1,242 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "controllers-mentor.go",
+  "steps": [
+    {
+      "file": "controllers/mentor.go",
+      "description": "register a mentor if they don't exist in the database",
+      "line": 61
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "retrieves the application context from the request, casting it to `*middleware.App`",
+      "line": 62
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "access the database instance from the app context",
+      "line": 63
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "initialize an empty struct to hold request data",
+      "line": 64
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "parses the JSON body from the request and maps it to `reqFields`",
+      "line": 66
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "retrieves `login_username` from the JWT session context to verify the session matches the requested `Username`.",
+      "line": 73
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "Queries the `mentors` table to check if the username already exists, storing the result in `mentor`",
+      "line": 81
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "if there is a database error (other than \"record not found\"), it logs and returns an internal server error",
+      "line": 87
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "checks if the username exists. If true, respond with a warning that the mentor already exists",
+      "line": 92
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "check if a student with the same username already exists in the `students` table",
+      "line": 106
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "handle potential errors from the database query for the student records",
+      "line": 111
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "if a student with the same username exists, respond with a warning",
+      "line": 115
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "create a new mentor entry in the `mentors` table using the data from `reqFields`",
+      "line": 129
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "If there’s an error while creating the mentor entry, log and respond with an internal server error.",
+      "line": 135
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "send successful message confirming the mentor registration",
+      "line": 140
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "creates a mentor dashboard entry if it doesn't exist already in the databasee. It verifies mentor data and then intiates a new dashboard record\n\n1. takes a `model.Mentor` instance `mentor` and a database instance `db` as arguments\n2. returns a `MentorDashboard` struct, which will contain the data for the mentor's dashboard",
+      "line": 145
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "1. `projects`: An empty slice of `models.Project`, which will store the projects retrieved from the database.\n2. `projectsInfo`: A slice of `ProjectInfo` structs, each representing a project with detailed information (used to hold the response format).\n3. `students`: A slice of `StudentInfo` structs to store details about each student who contributed to the mentor’s projects.\n",
+      "line": 146
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "1. loads related data for the `Mentor` and `SecondaryMentor` fields from the `projects` table to reduce additional queries\n2. filters projects where either the `mentor_id` or `secondary_mentor_id` matches the current mentor's ID\n3. retrieves the results and populates them into the `projects` slice",
+      "line": 150
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "create a map that stores student usernames to check if each student has already been added to `studentUsernames` (to avoid duplicates)\n",
+      "line": 154
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "loop over each `project` in `projects`\n`pulls` is initialized as an empty slice of strings. If the project’s `Pulls`field is non-empty, it splits `project.Pulls` (a comma-separated string) into individual pull request identifiers and stores them in `pulls`.",
+      "line": 156,
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 212
+        },
+        "end": {
+          "line": 2,
+          "character": 217
+        }
+      }
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "similar to `pulls`, `tags` slice is created. If `project.Tags` has data, it's split by commas creating a list of tags associates with the project",
+      "line": 162
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "Initializes a `ProjectInfo` struct for each project",
+      "line": 167,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 16
+        },
+        "end": {
+          "line": 1,
+          "character": 27
+        }
+      }
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "for each project, this inner loop iterates over the `Contributors` field (comma-separated usernames)\n1. checks if `studentUsername` has already been added to `studentMap`\n2. if true, then skip the `studentUsername`\n3. if false, add to the map and append to `studentUsernames`",
+      "line": 188
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "queries the `students` table for all entries where `username` matches any value in `studentUsernames`\nthe `Select` clause limits the query to retrieve only the `name` and `username`\n`.Find` retrieves the data and populates the `students` slice ",
+      "line": 198
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "initialize a `MentorDashboard` struct with the mentor detials and list of projects and students associated with the mentor",
+      "line": 201
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "retrieves the `App` context from the request context using `APP_CTX_KEY`",
+      "line": 223
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "extracts database connection (db) from the `App` context for use in querying the database",
+      "line": 224
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "declares a `modelMentor` variable of type `models.Mentor`, which will store the mentor information retrieved from the database",
+      "line": 226
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "Retrieves the `login_username` from the request context.",
+      "line": 228,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 16
+        },
+        "end": {
+          "line": 1,
+          "character": 30
+        }
+      }
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "begins a query on the `mentors` table to find a specific mentor",
+      "line": 229
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "calls the function to compile the mentor's projects and students details into a struct and return to the client",
+      "line": 256
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "retrieves the application context stored under `APP_CTX_KEY` and casts it to an `*App` type, which contains a reference to the database (db)",
+      "line": 276
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "define a var to hold the mentor record fetched from the database",
+      "line": 279
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "queries the `mentors` table in the database for the mentor's record with the specified `username`. ",
+      "line": 282
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "create a var to hold JSON request body data once its decoded",
+      "line": 299
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "updates the `Name` and `Email` fields of the mentor record `modelMentor` with values from `reqFields`",
+      "line": 307
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "Retrieves the application context from the request using the `APP_CTX_KEY`, casting it to the `*middleware.App type`. This gives access to the database connection (db) stored within the application context.\n\n",
+      "line": 337,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 96
+        },
+        "end": {
+          "line": 1,
+          "character": 116
+        }
+      }
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "fetch the logged-in mentor's username from the request context ",
+      "line": 340
+    },
+    {
+      "file": "controllers/mentor.go",
+      "description": "create a var to hold the retrieved mentor's information from the database.\nSearches the database and populates the `mentor` struct. `tx` holds the result of the database query execution (i.e. success or error)",
+      "line": 342
+    }
+  ],
+  "ref": "code-tour"
+}

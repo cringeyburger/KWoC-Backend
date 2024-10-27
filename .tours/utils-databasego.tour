@@ -1,0 +1,52 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "utils-database.go",
+  "steps": [
+    {
+      "file": "utils/database.go",
+      "description": "defines `MigrateModels(db *gorm.DB) error {...}`, which takes a GORM database connection (db) and returns an error if any migration fails",
+      "line": 16
+    },
+    {
+      "file": "utils/database.go",
+      "description": "`db.AutoMigrate(&models.Student{})`: Ensures the Student table is created or updated to match the model structure. If there's an error, it logs it and returns.\n\nthis pattern repeats for `Mentor`, `Project`, and `Stats`",
+      "line": 17
+    },
+    {
+      "file": "utils/database.go",
+      "description": "`func GetDB() (db *gorm.DB, err error) {...}` initialises the database connection and returns a GORM database instance and an error if any issues arise",
+      "line": 44
+    },
+    {
+      "file": "utils/database.go",
+      "description": "load necessary database connection details from env vars",
+      "line": 47
+    },
+    {
+      "file": "utils/database.go",
+      "description": "building the database connection string:\n1. constructs a data source name (DSN) for postgres using the env vars\n2. `sslmode=disable` indicates that SSL is not requires (useful for local dev)",
+      "line": 53
+    },
+    {
+      "file": "utils/database.go",
+      "description": "create a postgers dialector using the DSN",
+      "line": 62
+    },
+    {
+      "file": "utils/database.go",
+      "description": "opens the connection to the database using GORM and returns a db object",
+      "line": 64
+    },
+    {
+      "file": "utils/database.go",
+      "description": "if an error occurs while opening the database, log and return it",
+      "line": 66
+    },
+    {
+      "file": "utils/database.go",
+      "description": "returns the db object if successful",
+      "line": 72
+    }
+  ],
+  "ref": "code-tour"
+}

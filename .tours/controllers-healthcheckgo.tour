@@ -1,0 +1,52 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "controllers-healthcheck.go",
+  "steps": [
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "part of controllers package",
+      "line": 1
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "these comments are for `Swagger` integration, which generates API documentation",
+      "line": 12
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "func accepts `http.ResponseWriter` and `*http.Request` making it an HTTP handler",
+      "line": 20
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "records the current time to measure latency",
+      "line": 21
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "sends a HTTP 200 OK status. The next line writes `pong` as the response body.  ",
+      "line": 23
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "after writing the response, calculate the time taken to process the request.\nLog the latency information",
+      "line": 30
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "func checks the status of the server and its connection to the database\n\n1. retrieves the application context from `r.Context()`. `middleware.APP_CTX_KEY` is a key for accessing the `App` context\n2. extracts the `db` instance from `app.Db` giving access to database operations",
+      "line": 43
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "this line sends a simple query `SELECT 1` to the database. If the query fails, `err` will hold the error.",
+      "line": 47
+    },
+    {
+      "file": "controllers/healthcheck.go",
+      "description": "if the database check succeeds, send HTTP 200 OK status and write `OK` as the response body.",
+      "line": 53
+    }
+  ],
+  "ref": "code-tour"
+}

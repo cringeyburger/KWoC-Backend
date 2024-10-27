@@ -1,0 +1,82 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "utils-jwt.go",
+  "steps": [
+    {
+      "file": "utils/jwt.go",
+      "description": "part of `utils` package",
+      "line": 1
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "define custom error messages for common JWT issues, such as missing secret keys, expired tokens, or invalid tokens.",
+      "line": 14
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "This function retrieves the JWT secret key from environment variables.\n1. checks if the env var `JWT_SECRET_KEY` is set or not. If not, return error.\n2. If key is found, return key",
+      "line": 18
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "this function is a callback used by JWT lib to get the signing key for verifying the token\n1. calls `getJwtKey()` to retrieve secret key and returns it as a byte slice\n2. Return error if it occurs ",
+      "line": 28
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "A struct that holds fields related to user login. Here, it only contains a `Username` field, which is tagged for JSON serialization.",
+      "line": 38
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "A struct that combines `LoginJwtFields` and the registered claims defined by the JWT library (like expiration and issued time). This struct will be used to hold the claims in a JWT.",
+      "line": 42
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "func takes JWT as a string and attempts to parse it\n1. initializes a variable `loginClaims` to store the parsed claims\n2. calls `jwt.ParseWithClaims()`, which attempts to parse the token using the provided claims structure and the key function.",
+      "line": 47
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "if parsing is successful and the token is valid, return the token and the parssed claims",
+      "line": 63
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "generates a JWT based on the provided `LoginJwtFields`.",
+      "line": 66
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "captures current time, which will be used for setting the issues time of the JWT",
+      "line": 67
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "retrieves the JWT validity period from the env var and tries to convert it to an int",
+      "line": 70
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "if env var could not be parsed, it defaults the validity time to 30 days (24hrs * 30 days) and logs a warning",
+      "line": 73
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "contructs the claims for the JWT, including the issued time, not before time, and expiration time, using the validity period obtained earlier",
+      "line": 80
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "retrieves the JWT secret key for signing the token. ",
+      "line": 90
+    },
+    {
+      "file": "utils/jwt.go",
+      "description": "creates a new JWT with the specified claims and signing method (HMAC using SHA256). Then, it signs the token and returns the resulting string.",
+      "line": 95
+    }
+  ],
+  "ref": "code-tour"
+}

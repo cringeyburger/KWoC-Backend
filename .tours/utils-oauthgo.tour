@@ -1,0 +1,112 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "utils-oauth.go",
+  "steps": [
+    {
+      "file": "utils/oauth.go",
+      "description": "part of the utils package",
+      "line": 1
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "define custom errors ",
+      "line": 13
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "struct for the request body fields for obtaining the OAuth access token from GH.",
+      "line": 18
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "struct defines the response body fields expected from GH after the OAuth access token request. It contains the access token if successful or an error message if not.",
+      "line": 25
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "func accepts an authorization `code` and returns an access token string if successful, or an error otherwise",
+      "line": 30
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "get client ID and client secret from env vars",
+      "line": 31
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "create an HTTP client with a 30-sec timeout to ensure that if GH's API is slow or unreachable, the request doesn't hang indefinitely",
+      "line": 42
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "`reqParams` holds the JSON-encoded request body",
+      "line": 47
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "`http.NewRequest` function constructs a POST request to the GH OAuth endpoint with `reqParams` as the request body.",
+      "line": 56
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "these headers specify that the request and response should be in JSON format",
+      "line": 65
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "request is sent, and response is stored in `res`. If there is an error, it returns `nil`",
+      "line": 68
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "the response body is decoded into `resFields` which holds the access token or error",
+      "line": 75
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "if the response contains an error message, it returns a new error with that message. If successful, it returns the access token",
+      "line": 81
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "define a struct that maps GH user info. ",
+      "line": 88
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "func retrieves user information given an `accessToken`",
+      "line": 94
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "create an HTTP client with a 30-second timeout",
+      "line": 95
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "create a GET request to GH's user information endpoint",
+      "line": 100
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "The `Authorization` header is added, using the access token to authenticate the request.",
+      "line": 109
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "request is sent",
+      "line": 114
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "JSON response is decoded into the `userInfo` struct",
+      "line": 123
+    },
+    {
+      "file": "utils/oauth.go",
+      "description": "if decoding fails, error is returned, otherwise return a pointer to the `userInfo` struct",
+      "line": 126
+    }
+  ],
+  "ref": "code-tour"
+}

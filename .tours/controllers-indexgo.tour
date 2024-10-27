@@ -1,0 +1,22 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "controllers-index.go",
+  "steps": [
+    {
+      "file": "controllers/index.go",
+      "description": "part of controllers package",
+      "line": 2
+    },
+    {
+      "file": "controllers/index.go",
+      "description": "func accepts `http.ResponseWriter` for the response and `*http.Request` for requesting data",
+      "line": 17
+    },
+    {
+      "file": "controllers/index.go",
+      "description": "writes the message to the `ResponseWriter`, sending it as the HTTP response body. ",
+      "line": 18
+    }
+  ],
+  "ref": "code-tour"
+}

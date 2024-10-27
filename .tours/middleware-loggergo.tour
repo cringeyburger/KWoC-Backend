@@ -1,0 +1,37 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "middleware-logger.go",
+  "steps": [
+    {
+      "file": "middleware/logger.go",
+      "description": "this file belongs to the `middleware` package. It is designed to log info about incoming requests, including the time taken to process each request. ",
+      "line": 1
+    },
+    {
+      "file": "middleware/logger.go",
+      "description": "`func Logger(inner http.Handler, name string) http.Handler` takes two parameters:\n1. inner: a `http.Handler` that represents the next handler in the chain. This is the actual handler that will process the request.\n2. name: a string representing the name of the route or handler being logged\n\nIt is designed to measure and log the time taken to handle incoming HTTP requests. It wraps another HTTP handler (the actual request handler) and logs the route name along with the time taken for processing request. Useful for monitoring performance and debugging.",
+      "line": 12
+    },
+    {
+      "file": "middleware/logger.go",
+      "description": "Returns an anonymous function wrapped in `http.HandlerFunc`, which converts it to an `http.Handler`. This function takes two parameters:\n1. w: An `http.ResponseWriter` used to construct the HTTP response.\n2. r: An `http.Request` representing the incoming request.",
+      "line": 13
+    },
+    {
+      "file": "middleware/logger.go",
+      "description": "records the current time at the start of the request handling",
+      "line": 14
+    },
+    {
+      "file": "middleware/logger.go",
+      "description": "calls the next handler in the chain, passing the `ResponseWriter` and `Request` to it. This is where the actual processing of the request occurs",
+      "line": 16
+    },
+    {
+      "file": "middleware/logger.go",
+      "description": "calls `LogInfo` from the utils package to log information about the request.\n1. `r`: the `http.request` object, which may include details like the request path, method, and headers\n2. `fmt.Sprintf(...)`: formats a string that combines the route name and the elapsed time since the request started processing",
+      "line": 18
+    }
+  ],
+  "ref": "code-tour"
+}

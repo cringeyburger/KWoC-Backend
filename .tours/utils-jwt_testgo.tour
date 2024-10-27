@@ -1,0 +1,82 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "utils-jwt_test.go",
+  "steps": [
+    {
+      "file": "utils/jwt_test.go",
+      "description": "part of `utils_test` package",
+      "line": 1
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "defines a test function named `TestJwtUtils`. The `t` is used to report test failures and log messages",
+      "line": 13
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "seeds the random generator with the current time in milliseconds.\nEnsures that each run of the test produces different random values",
+      "line": 14
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "creates a var of type `LoginJwtFields`, setting the `Username` field to a random username \n\nFor more information, look at `utils/jwt.go`",
+      "line": 16
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "calls the function without setting the JWT secret key, which is expected to return an error",
+      "line": 21
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "checks if the error returned matches the expected error. If not, logs an error message",
+      "line": 23
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "generates a random JWT secret key and sets it as an env var using `os.Setenv`",
+      "line": 29
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "calls the function to create a JWT for the `testLoginFields`\n\n",
+      "line": 33
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "if an error occurred during token generation, log a fatal error ",
+      "line": 35
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "ensures that generated token string is not empty. If it is, log fatal error message",
+      "line": 39
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "attempts to parse a random invalid token string, expecting an error",
+      "line": 45
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "if no error occurred, log an error message saying we were expecting an error",
+      "line": 47
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "parses the prev generated valid token string and expects no error",
+      "line": 51
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "compares the `Username` in the parsed claims with the original `Username` used to generate the token. \nIf they do not match, it logs an error message indicating the mismatch.",
+      "line": 61
+    },
+    {
+      "file": "utils/jwt_test.go",
+      "description": "unit test checks the JWT utility functions:\n1. Ensuring that errors are properly handled when the JWT secret key is not set.\n2. Verifying that a JWT can be generated correctly when a valid secret key is provided.\n3. Testing that the generated JWT can be parsed and that the claims extracted from it match the original data used to create the token.",
+      "line": 13
+    }
+  ],
+  "ref": "code-tour"
+}

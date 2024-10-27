@@ -1,0 +1,67 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "middleware-login.go",
+  "steps": [
+    {
+      "file": "middleware/login.go",
+      "description": "this middleware checks for the presence and validity of a JWT in incoming requests. If the token is valid, it extracts the username from the token's claims and stores it in the request context for downstream handlers to use.\n\nIf token is missing or invalis, it logs the appropriate error and sends a 401 (unauthorized) or 500 (internal server error) response as needed\n\nDefines a function `WithLogin` that takes an `http.HandlerFunc` (the next handler in the chain) as an argument and returns another `http.HandlerFunc`.",
+      "line": 15
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "Returns a new handler function that takes an `http.ResponseWriter` and an `http.Request` as parameters.",
+      "line": 16
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "tries to retrieve the JWT from the request headers using the key `Bearer`. This lines assumes that the token is expected to be in the `Bearer` header",
+      "line": 17
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "checks if the token is empty. If it is, the utility function logs a warning and sends a 401 Unauthorized response back to the client, indicating that no JWT token was found\n\nFor more information, look into `utils/log.go`",
+      "line": 19
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "Calls a utility function to parse the JWT. \n\nFor more information, look at `utility/jwt.go`",
+      "line": 24
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "checks if there was an error during the parsing of the JWT. \n1. If the token is invalid, log the error and send 401 Unauthorized response saying that JWT session is invalid\n2. If the token is expired, it logs the error and sends a 401 Unauthorized response saying that JWT token has expired.\n3. If neither invalid or expired, justlog a generic message about being unable to parse with 500 internal server error",
+      "line": 26
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "retrieves the current request context, which can carry values across the request lifecycle",
+      "line": 41
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "creates a new context that includes the username extracted from the JWT claims. This context now has an additional value associated with the key `LOGIN_CTX_USERNAME_KEY`",
+      "line": 42
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "calls the next handler in the chain, passing the `http.ResponseWriter` and the request `r`, but with new context that includes the username. Allows downstream handlers to access the username from the context",
+      "line": 44
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "part of the middleware package",
+      "line": 1
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "defines a new type `LoginCtxKey` which is a string type. Used as a key for storing the underanme in the context (provides functionality for carrying deadlines, cancellation signals, and other request-scoped values across API boundaries)",
+      "line": 10
+    },
+    {
+      "file": "middleware/login.go",
+      "description": "declares a constant of type `LoginCtxKey` to use as the key for the username in the context. Avoids collision wiht other context values",
+      "line": 12
+    }
+  ],
+  "ref": "code-tour"
+}

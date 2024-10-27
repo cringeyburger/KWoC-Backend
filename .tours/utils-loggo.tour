@@ -1,0 +1,57 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "utils-log.go",
+  "steps": [
+    {
+      "file": "utils/log.go",
+      "description": "part of utils package",
+      "line": 1
+    },
+    {
+      "file": "utils/log.go",
+      "description": "define a custom error variable that indicates a detected session hijacking attempt",
+      "line": 10
+    },
+    {
+      "file": "utils/log.go",
+      "description": "func logs an error message with structures logging\n1. takes HTTP request, an error, and a custom error message as parameters\n2. logs the HTTP method, request URI, and the provided error message",
+      "line": 12
+    },
+    {
+      "file": "utils/log.go",
+      "description": "func logs an error and sends a HTTP response to the client\n1. calls `LogErr()` to log the error\n2. responds to client with an HTTP status code and the error message",
+      "line": 21
+    },
+    {
+      "file": "utils/log.go",
+      "description": "logs an information message about an HTTP request\n1. similar to `LogErr()` but logs at info level",
+      "line": 26
+    },
+    {
+      "file": "utils/log.go",
+      "description": "logs a warning message about an HTTP request\n1. logs method, request URI, and the provided warning message",
+      "line": 35
+    },
+    {
+      "file": "utils/log.go",
+      "description": "logs a warning and sends a corresponding HTTP response to the client",
+      "line": 44
+    },
+    {
+      "file": "utils/log.go",
+      "description": "func checks if the current request's username matches the expected username from the session ",
+      "line": 49
+    },
+    {
+      "file": "utils/log.go",
+      "description": "if the usernames don't match, logs a warning and responds with HTTP 401 Unauthorized status",
+      "line": 50
+    },
+    {
+      "file": "utils/log.go",
+      "description": "returns the `SessionHijackError` to indicate the issue, otherwise if the usernames match, return `nil`",
+      "line": 61
+    }
+  ],
+  "ref": "code-tour"
+}

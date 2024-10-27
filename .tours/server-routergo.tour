@@ -1,0 +1,62 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "server-router.go",
+  "steps": [
+    {
+      "file": "server/router.go",
+      "description": "defined custom error message for casses when a route is not found or when a HTTP method is not allowed",
+      "line": 15
+    },
+    {
+      "file": "server/router.go",
+      "description": "defines `NewRouter` which initiliases a router, sets up routes, and applies middlewares.\nTakes -> `db`, a GORM database instance; `testMode`, a boolean flag to skip certain routes in testing mode",
+      "line": 19
+    },
+    {
+      "file": "server/router.go",
+      "description": "creates a new router instance with strict slash behaviour to ensure URLs with and without trailing slashes are treated the same",
+      "line": 20
+    },
+    {
+      "file": "server/router.go",
+      "description": "sets a custom 404 handler, which is called if no route matches the requested URL\nCalls `utils.LogErrAndRespond` function that logs the error and responds with a `404 not found` message.\nFor more information, check `utils/json.go`",
+      "line": 21
+    },
+    {
+      "file": "server/router.go",
+      "description": "Sets a custom 405 handler to be called if a route matches the path but the HTTP method is not allowed.\nLogs the error and responds with a \"405 Method Not Allowed\" message.",
+      "line": 26
+    },
+    {
+      "file": "server/router.go",
+      "description": "creates an instance of `App`, a struct in the `middleware` package that holds the database instance.\nFor more information, check `middleware/wrap.go`",
+      "line": 31
+    },
+    {
+      "file": "server/router.go",
+      "description": "calls `getRoutes`, a function that returns a list of routes for the API\nFor more information, check `server/routes.go`",
+      "line": 32
+    },
+    {
+      "file": "server/router.go",
+      "description": "loops over each route in `routes`. If the route is disabled, `route.diabled` is `true`) and `testMode` is false, the route is skipped",
+      "line": 34
+    },
+    {
+      "file": "server/router.go",
+      "description": "1. Initialises a `handler` variable for each route\n2. Assigns the route's handler function (`route.HandlerFunc`) to `handler`\n3. Wraps `handler`in the `Logger` middleware, which logs the incoming requesting and the route's name\nFor more information, check `middleware/logger.go`",
+      "line": 40
+    },
+    {
+      "file": "server/router.go",
+      "description": "register the route on the router using:\n1. The HTTP method for the route (GET, POST, etc.)\n2. The URL path pattern for the route\n3. The name of the route\n4. The handler function (with applied middleware) for the route",
+      "line": 47
+    },
+    {
+      "file": "server/router.go",
+      "description": "return the fully configured `router`, ready to handle incoming requests with defined routes, error handlers, and middlewares",
+      "line": 54
+    }
+  ],
+  "ref": "code-tour"
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "middleware-wrap.go",
+  "steps": [
+    {
+      "file": "middleware/wrap.go",
+      "description": "part of package middleware",
+      "line": 1
+    },
+    {
+      "file": "middleware/wrap.go",
+      "description": "define a struct `App` that contains a field `Db` which is a pointer to a `gorm.DB` instance. ",
+      "line": 11
+    },
+    {
+      "file": "middleware/wrap.go",
+      "description": "defines a new type `AppCtxKey` which is a string type used as a key for storing the `App` instance in the context. This avoids collisions with other context values ",
+      "line": 15
+    },
+    {
+      "file": "middleware/wrap.go",
+      "description": "Declares a constant of type `AppCtxKey` to use as the key for the `App` instance in the context. \nThis string `app` is the key under which the `App` instance will be stored",
+      "line": 17
+    },
+    {
+      "file": "middleware/wrap.go",
+      "description": "Defines a function `WrapApp` that takes an `*App` instance and an `http.HandlerFunc` (the next handler in the chain) as arguments, and returns another `http.HandlerFunc`.\n\nThis function acts as a middleware that attaches an instance of the `App` struct (which contans a database connection) to the context of incoming HTTP requests. This allows subsequent handlers to access the database connection easily.\nThe key used to store `App` instance in the context is defined as a constant, preventing potential key collisions with other context values. \n",
+      "line": 19
+    },
+    {
+      "file": "middleware/wrap.go",
+      "description": "Returns a new handler function that takes an `http.ResponseWriter` and an `http.Request` as parameters.",
+      "line": 20
+    },
+    {
+      "file": "middleware/wrap.go",
+      "description": "creates a new context that includes the `app` instance. The `context.WithValue` function takes the existing request context `r.context()` and associates the `app` with the key `APP_CTX_KEY`.\nThis allows the `app` instance to be retrieved later in the request handling process",
+      "line": 21
+    },
+    {
+      "file": "middleware/wrap.go",
+      "description": "calls the next handler in the chain, passing the `http.ResponseWriter` and the request `r` but with the new context that includes the `app` instance. \nThis enables downstream handlers to access `App` instance from the context",
+      "line": 22
+    }
+  ],
+  "ref": "code-tour"
+}

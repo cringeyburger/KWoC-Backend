@@ -1,0 +1,27 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "server-routes.go",
+  "steps": [
+    {
+      "file": "server/routes.go",
+      "description": "belongs to the package server",
+      "line": 1
+    },
+    {
+      "file": "server/routes.go",
+      "description": "defines a struct that represents a single route in the application.\n1. name of the route\n2. http method \n3. string for the URL pattern the route responds to\n4. an `http.HandlerFunc` that defines the function to handle requests to this route\n5. A boolean that tells whether the route is *disabled*",
+      "line": 11
+    },
+    {
+      "file": "server/routes.go",
+      "description": "defines a function that takes a pointer to a `middleware.App` instance (likely containing app-level dependencies, like database connections). The function returns a slice of `Route`\n\nFor more information, have a look at `middleware/wrap.go`",
+      "line": 19
+    },
+    {
+      "file": "server/routes.go",
+      "description": "1. route is names Index\n2. responds to GET method\n3. maps to `/api/`\n4. handler function is `controllers.Index`\n5. disabled is `false`\n\nFor more information, go to `controllers/index.go`",
+      "line": 22
+    }
+  ],
+  "ref": "code-tour"
+}
